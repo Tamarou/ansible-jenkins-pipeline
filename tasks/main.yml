@@ -1,0 +1,7 @@
+---
+- jenkins_job:
+    config: "{{ lookup('template', jenkins_seed_template }}"
+    name: "{{ jenkins_seed_name}}"
+    token: "{{ jenkins_admin_token }}"
+    url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}{{ jenkins_url_prefix }}"
+    user: admin
