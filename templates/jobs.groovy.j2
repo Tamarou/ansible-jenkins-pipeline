@@ -1,5 +1,5 @@
 {% for repository in jenkins_git_repositories %}
-pipelineJob('{{ repository }}') {
+pipelineJob('{{ repository.name }}') {
   triggers {
     scm ''
   }
@@ -8,9 +8,9 @@ pipelineJob('{{ repository }}') {
       scm {
         git {
           remote {
-            url('{{ jenkins_git_user }}@{{ jenkins_git_host }}:{{ jenkins_git_path }}/{{ repository }}.git')
+            url('{{ repository.url }}')
           }
-          branch('master')
+          branch( {{ repository.branch | default('master') }} )
         }
       }
       scriptPath('Jenkinsfile')
