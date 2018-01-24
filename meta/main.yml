@@ -1,0 +1,26 @@
+---
+dependencies:
+  - geerlingguy.jenkins
+
+galaxy_info:
+  author: perigrin
+  description: Jenkins CI Pipline Configuration
+  company: "Tamarou, LLC"
+  license: "license (MIT)"
+  min_ansible_version: 2.2
+  platforms:
+  - name: EL
+    versions:
+    - 6
+    - 7
+  - name: Fedora
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  galaxy_tags:
+    - development
