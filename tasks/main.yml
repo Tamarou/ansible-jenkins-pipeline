@@ -1,7 +1,25 @@
 ---
-- jenkins_job:
-    config: "{{ lookup('template', jenkins_seed_template }}"
+- name: Install epel
+  package:
+    name: epel-release
+    state: present
+  when: ansible_os_family == "RedHat"
+- name: Install pip
+  package:
+    name: python-pip
+    state: present
+  when: ansible_os_family == "RedHat"
+- name: Install python-jenkins
+  package:
+    name: python-jenkins
+    state: latest
+  become: yes
+
+- name: setup the default job(s) in jenkins
+  jenkins_job:
+    config: "{{ lookup('template', jenkins_seed_template) }}"
     name: "{{ jenkins_seed_name}}"
-    token: "{{ jenkins_admin_token }}"
+    user: "{{ jenkins_admin_user }}"
+    password: "{{ jenkins_admin_password }}"
     url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}{{ jenkins_url_prefix }}"
     user: admin
